@@ -20,10 +20,7 @@ for((i=0;i<$PROJECTS;i++)); do
     export PROJECT_NEW="$PROJECT_ID-$PROJECT_LABEL-$i"
 
     echo "creating project: $PROJECT_NEW"
-    # for corp, be sure to create in correct folder // with correct billing account
-    # --folder=[same as parent project]
-    # billing account TODO
-    gcloud projects create $PROJECT_NEW
+    gcloud projects create $PROJECT_NEW --folder=$(gcloud projects describe $PROJECT_ID --format="value(parent.id)")
     gcloud beta billing projects link $PROJECT_NEW --billing-account $BILLING_ACCOUNT
     gcloud services enable cloudbuild.googleapis.com --project=$PROJECT_NEW
 done
