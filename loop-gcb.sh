@@ -18,7 +18,7 @@ for ((j=0; j<=$NUM_PROJECTS-1; j++)); do
     echo "Starting builds in project $THIS_PROJECT..."
     echo "------------------"
     for ((i=1; i<=$NUMBUILDS; i++)); do
-        gcloud builds submit --no-source --substitutions=_BUILD_ITER=${i} --project=$THIS_PROJECT >>./buildlog 2>&1 & disown; 
+        gcloud builds submit --no-source --substitutions=_BUILD_ITER="${j}.${i}" --project=$THIS_PROJECT >>./buildlog 2>&1 & disown; 
         echo "Submitted build: ${j}.${i}"
     done
 done    
