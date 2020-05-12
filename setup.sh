@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eEo pipefail
+set -eEox pipefail
 
 export PROJECT_ID=$(gcloud config get-value "project")
 echo "Base project: $PROJECT_ID"
