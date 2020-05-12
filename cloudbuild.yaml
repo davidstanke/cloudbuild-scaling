@@ -1,8 +1,8 @@
 steps:
 - name: 'bash'
   args: ['-c', 'echo "Hello from build ${_BUILD_ITER}! Sleeping a bit..."; sleep 120s; echo "...done"']
-# options:
-#   workerPool: '$PROJECT_ID/custom-worker-pool'
 substitutions:
   _BUILD_ITER: '(undefined)'
+  _LOGS_BUCKET: '(undefined)'
 timeout: 1500s
+logsBucket: 'gs://${_LOGS_BUCKET}'
