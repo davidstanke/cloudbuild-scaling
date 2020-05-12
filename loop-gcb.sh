@@ -14,8 +14,9 @@ rm -f buildlog
 touch buildlog
 
 for ((j=0; j<=$NUM_PROJECTS-1; j++)); do
-    THIS_PROJECT="$PROJECT_ID-$PROJECT_LABEL-$j"
-    echo "Starting builds in project $THIS_PROJECT..."
+    THIS_PROJECT="$PROJECT_ID-p-$PROJECT_LABEL-$j"
+    echo " "
+    echo "Starting builds in project $THIS_PROJECT"
     echo "------------------"
     for ((i=1; i<=$NUMBUILDS; i++)); do
         gcloud builds submit --no-source --substitutions=_BUILD_ITER="${j}.${i}" --project=$THIS_PROJECT >>./buildlog 2>&1 & disown; 
