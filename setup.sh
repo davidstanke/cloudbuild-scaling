@@ -19,8 +19,10 @@ echo "Label for new projects: $PROJECT_LABEL"
 for((i=0;i<$PROJECTS;i++)); do
     export PROJECT_NEW="$PROJECT_ID-p-$PROJECT_LABEL-$i"
 
-    echo "creating project: $PROJECT_NEW"
+    echo "creating project: $PROJECT_NEW" 
     FOLDER_ID=$(gcloud projects describe $PROJECT_ID --format="value(parent.id)")
+    
+    # TODO: run these in parallel (invoke async and poll for completion)
     if test -z "$FOLDER_ID"; then 
         gcloud projects create $PROJECT_NEW
     else
